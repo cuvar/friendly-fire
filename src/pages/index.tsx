@@ -54,7 +54,7 @@ const Home: NextPage = () => {
   }
 
   return (
-    <div className="flex flex-col bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+    <div className="flex w-full flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
       <div className="flex justify-end">
         <button
           className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
@@ -63,22 +63,31 @@ const Home: NextPage = () => {
           Sign out
         </button>
       </div>
-      <main className="flex min-h-screen flex-col items-center justify-center text-white">
-        <h1 className="text-3xl font-bold">The game</h1>
+      <main className="flex min-h-screen max-w-4xl flex-col items-center justify-center space-y-8 px-6 text-white">
+        <h1 className="text-2xl font-bold md:text-3xl">
+          Mit Freundschaft bezahlt
+        </h1>
         {statesQuery.data == null ? (
           <div>no data</div>
         ) : (
-          statesQuery.data.map((e) => (
-            <Counter
-              key={e.user}
-              data={e}
-              removeUser={(user) => removeUser(user)}
-            />
-          ))
+          <div className="flex w-full flex-col space-y-6">
+            {statesQuery.data.map((e) => (
+              <Counter
+                key={e.user}
+                data={e}
+                removeUser={(user) => removeUser(user)}
+              />
+            ))}
+          </div>
         )}
         <div className="my-4 flex space-x-2">
           {/* <button onClick={removeUser}>remove user</button> */}
-          <button onClick={addUser}>add user</button>
+          <button
+            onClick={addUser}
+            className="rounded-lg border border-white px-4 py-2 hover:bg-white hover:text-black active:border-gray-400 active:bg-gray-400"
+          >
+            add user
+          </button>
           {/* <select onSelect={(e) => onSelect(e)} defaultValue={selectedUser}>
             {statesQuery.data?.map((u) => (
               <option key={u.user} value={u.user}>
