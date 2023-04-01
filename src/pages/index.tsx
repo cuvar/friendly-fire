@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center text-white">
         <h1 className="text-3xl font-bold">The game</h1>
         {statesQuery.data == null ? (
-          <div>An error occurred</div>
+          <div>no data</div>
         ) : (
           statesQuery.data.map((e) => <Counter data={e} />)
         )}

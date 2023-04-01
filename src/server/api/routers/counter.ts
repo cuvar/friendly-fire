@@ -12,13 +12,21 @@ const REDIS_PRE = "friendly-fire";
 const REDIS_USERS = `${REDIS_PRE}-users`;
 
 export const counterRouter = createTRPCRouter({
-  // hello: publicProcedure
-  //   .input(z.object({ text: z.string() }))
-  //   .query(({ input }) => {
-  //     return {
-  //       greeting: `Hello ${input.text}`,
-  //     };
-  //   }),
+  updateCounter: publicProcedure
+    .input(z.object({ user: z.string(), newCounter: z.number() }))
+    .mutation(async ({ input }) => {
+      const key = `${REDIS_PRE}-${input.user}`;
+      try {
+        const res = await redis.set(key, input.newCounter);
+        if (res === "OK") {
+          // todo: return is not possible
+          // return { success: true };
+        }
+        // return { success: false };
+      } catch (error) {
+        // return { success: false };
+      }
+    }),
 
   getStates: protectedProcedure.query(async () => {
     try {
@@ -42,7 +50,7 @@ export const counterRouter = createTRPCRouter({
         });
       }
 
-      console.log(userData);
+      // console.log(userData);
 
       return userData;
     } catch (error) {
