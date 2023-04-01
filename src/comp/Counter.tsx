@@ -4,6 +4,7 @@ import { IUserData } from "~/utils/types";
 
 interface IProps {
   data: IUserData;
+  removeUser: (user: string) => void;
 }
 
 export default function Counter(props: IProps) {
@@ -28,12 +29,17 @@ export default function Counter(props: IProps) {
     setCounter(newNumber);
   }
 
+  function remove() {
+    props.removeUser(props.data.user);
+  }
+
   return (
     <div className="flex space-x-2">
       <button onClick={decrease}>-</button>
       <div>{props.data.user}</div>
       <div>{counter}</div>
       <button onClick={increase}>+</button>
+      <button onClick={remove}>remove</button>
     </div>
   );
 }
