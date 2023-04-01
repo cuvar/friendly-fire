@@ -30,7 +30,10 @@ export default function Counter(props: IProps) {
   }
 
   function remove() {
-    props.removeUser(props.data.user);
+    const res = confirm(`wirklich ${props.data.user} löschen?`);
+    if (res) {
+      props.removeUser(props.data.user);
+    }
   }
 
   const btnClass =
@@ -90,10 +93,12 @@ export default function Counter(props: IProps) {
         <div>{props.data.user}</div>
         <div>{counter}</div>
       </div>
-      <button onClick={increase} className={btnClass}>
-        {plusIcon}
-      </button>
-      {/* <button onClick={remove}>{trashIcon}</button> */}
+      <div className="flex space-x-4">
+        <button onClick={increase} className={btnClass}>
+          {plusIcon}
+        </button>
+        <button onClick={remove}>{trashIcon}</button>
+      </div>
     </div>
   );
 }
