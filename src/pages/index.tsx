@@ -55,9 +55,9 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex w-full flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-      <div className="flex justify-end">
+      <div className="flex w-full justify-end px-4">
         <button
-          className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+          className="mt-4 rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
           onClick={() => void signOut()}
         >
           Sign out
